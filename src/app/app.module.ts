@@ -7,13 +7,13 @@ import { AuthService } from './auth.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from 'angularfire2'; 
-import { AngularFireDatabaseModule } from 'angularfire2/database'; 
-import { AngularFireAuthModule } from 'angularfire2/auth'; 
-import { RouterModule } from '@angular/router'; 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
-import { FormsModule } from '@angular/forms'; 
-import { CustomFormsModule } from 'ng2-validation'; 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 import { DataTableModule } from 'angular-4-data-table';
 
 import { AppComponent } from './app.component';
@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { ProductCardComponent } from './product-card/product-card.component';
     LoginComponent,
     ProductFormComponent,
     ProductFilterComponent,
-    ProductCardComponent
+    ProductCardComponent,
+      FooterComponent
+
   ],
   imports: [
     BrowserModule,
@@ -58,36 +61,36 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AngularFireAuthModule,
     NgbModule.forRoot(),
     RouterModule.forRoot([
+
+      { path: '', component: HomeComponent },
       { path: '', component: ProductsComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'login', component: LoginComponent },
 
-      { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
-      { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard] },
-      { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
-     
-      { 
-        path: 'admin/products/new', 
-        component: ProductFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+
+      {
+        path: 'products/new',
+        component: ProductFormComponent
+
       },
-      { 
-        path: 'admin/products/:id', 
-        component: ProductFormComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+      {
+        path: 'products/:id',
+        component: ProductFormComponent
+
       },
-      { 
-        path: 'admin/products', 
-        component: AdminProductsComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
+      {
+        path: 'footer',
+        component: FooterComponent
+
       },
-      { 
-        path: 'admin/orders', 
-        component: AdminOrdersComponent, 
-        canActivate: [AuthGuard, AdminAuthGuard] 
-      }
-    ])    
+      {
+        path: 'products',
+        component: AdminProductsComponent,
+
+      },
+   
+    ])
   ],
   providers: [
     AuthService,
@@ -100,3 +103,4 @@ import { ProductCardComponent } from './product-card/product-card.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
