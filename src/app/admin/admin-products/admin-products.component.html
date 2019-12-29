@@ -1,12 +1,12 @@
 
 <p>
-  <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+  <a routerLink="/products/new" class="btn btn-primary">Nouveau produit</a>
 </p>
 <p>
   <input 
     #query
     (keyup)="filter(query.value)"
-    type="text" class="form-control" placeholder="Search...">
+    type="text" class="form-control" placeholder="Recherche...">
 </p>
 
 <data-table
@@ -15,7 +15,7 @@
   (reload)="reloadItems($event)">
   <data-table-column
     [property]="'title'"  
-    [header]="'Title'"
+    [header]="'Titre'"
     [sortable]="true"
     [resizable]="true"
   >
@@ -23,12 +23,12 @@
   
   <data-table-column
     [property]="'price'"  
-    [header]="'Price'"
+    [header]="'Prix'"
     [sortable]="true"
     [resizable]="true"
   >
     <ng-template #dataTableCell let-item="item">
-      {{ item.price | currency:'USD':true }}
+      {{ item.price +' FCFA ' }}
     </ng-template>
   </data-table-column>
 
@@ -36,7 +36,7 @@
     [property]="'$key'"  
   >
     <ng-template #dataTableCell let-item="item">
-      <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+      <a [routerLink]="['/products', item.$key]">Modifier</a>
     </ng-template>
   </data-table-column>
 
